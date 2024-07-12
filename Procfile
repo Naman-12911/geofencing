@@ -1,1 +1,1 @@
-web: waitress-serve --port=$PORT geofencing.wsgi:application
+web: waitress-serve --port=$PORT genfencing.wsgi:application
