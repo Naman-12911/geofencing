@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-dl6=47)1)&w6&2px$ldt7r!#5cshhmi@u+jcrokvcmsgnoxg_6
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -188,11 +188,13 @@ REST_FRAMEWORK = {
 
 CORS_ALLOWED_ORIGINS = [
     'http://localhost:3000',
+    "https://geo-fencing-26725f374a4b.herokuapp.com",
    
 ]
 
 CSRF_TRUSTED_ORIGINS=[
     'http://localhost:3000',
+    'https://geo-fencing-26725f374a4b.herokuapp.com'
     
      
 ]
