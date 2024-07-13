@@ -60,11 +60,11 @@ class UserLoginSerializer(serializers.ModelSerializer):
                 user_type = 'user'
                 return {
                     'phone_no': user.phone_no,
-                     'eamil': user.email,
+                     'email': user.email,
                      'user': user.user,
                     'user_type': user_type,
                     'tokens': user.tokens(),
-                    'userLogin': user.userLogin,
+                    'user': user.user,
                     'id': user.id,
                     'first_name': user.first_name
                 }
@@ -72,7 +72,7 @@ class UserLoginSerializer(serializers.ModelSerializer):
             user_type = 'admin'
             return {
                 'phone_no': user.phone_no,  # Use 'phone_no' instead of 'phone_no'
-                'eamil': user.email,
+                'email': user.email,
                 'user_type': user_type,
                 'user': user.admin,
                 'tokens': user.tokens(),
