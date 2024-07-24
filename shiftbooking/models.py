@@ -16,8 +16,7 @@ class CheckInCheckOut(models.Model):
 
 class GeoFencing(models.Model):
     user = models.ForeignKey(User,models.CASCADE,null=True,blank=True)
-    longitute = models.TextField(null=True,blank=True)
-    latitute = models.TextField(null=True,blank=True)
+    cordinates = models.TextField(null=True,blank=True)
 
 
 class Notification(models.Model):
