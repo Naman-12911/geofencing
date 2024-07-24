@@ -14,3 +14,13 @@ class CheckInCheckOut(models.Model):
     check_out_time = models.DateTimeField(null=True,blank=True)
 
 
+class GeoFencing(models.Model):
+    user = models.ForeignKey(User,models.CASCADE,null=True,blank=True)
+    longitute = models.TextField(null=True,blank=True)
+    latitute = models.TextField(null=True,blank=True)
+
+
+class Notification(models.Model):
+    user = models.ForeignKey(User,models.CASCADE,null=True,blank=True)
+    message = models.CharField(max_length=100,null=True,blank=True)
+    title = models.CharField(max_length=100,null=True,blank=True)

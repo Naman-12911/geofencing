@@ -140,3 +140,138 @@ class CheckInCheckOutAPIview(APIView):
         return Response({
             'message': 'Check In Check Out Deleted Successfully'
         })
+    
+
+
+class GeoFencingAPIview(APIView):
+    permission_classes = [IsAuthenticated]
+    def get_object(self, pk):
+        try:
+            return GeoFencing.objects.get(pk=pk)
+        except GeoFencing.DoesNotExist:
+            raise Http404
+        
+    def get(self, request, pk=None, format=None):
+            if pk:
+                data = GeoFencing.objects.all()
+                serializer = GeoFencingSerializer(data)
+                return Response(serializer.data)
+
+            else:
+                data = GeoFencing.objects.all()
+                serializer = GeoFencingSerializer(data, many=True)
+
+                return Response(serializer.data)
+    def post(self, request, format=None):
+            current_user = request.user
+            mutable_data = request.data.copy()
+            mutable_data['user'] = current_user.id 
+            
+            serializer = GeoFencingSerializer(data=mutable_data)
+
+            # Check if the data passed is valid
+            serializer.is_valid(raise_exception=True)
+            serializer.save()
+            # Return Response to User
+
+            response = Response()
+
+            response.data = {
+                'message': 'long and lat saved Successfully',
+                'data': serializer.data
+            }
+            return response
+
+    def patch(self, request, pk=None, format=None):
+        # Get the todo to update
+        long_lat_to_update = GeoFencing.objects.get(pk=pk)
+
+        serializer = GeoFencingSerializer(instance=long_lat_to_update, data=request.data, partial=True)
+
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+
+        response = Response()
+        response.data = {
+            'message': 'long and lat updated Successfully',
+            'data': serializer.data
+        }
+
+        return response
+
+    def delete(self, request, pk, format=None):
+        long_lat_to_delete =  GeoFencing.objects.get(pk=pk)
+
+            # delete the todo
+        long_lat_to_delete.delete()
+
+        return Response({
+            'message': 'long and lat Deleted Successfully'
+        })
+    
+
+class NotificationAPIview(APIView):
+    permission_classes = [IsAuthenticated]
+    def get_object(self, pk):
+        try:
+            return Notification.objects.get(pk=pk)
+        except Notification.DoesNotExist:
+            raise Http404
+        
+    def get(self, request, pk=None, format=None):
+            if pk:
+                data = Notification.objects.all()
+                serializer = NotificationSerializer(data)
+                return Response(serializer.data)
+
+            else:
+                data = Notification.objects.all()
+                serializer = NotificationSerializer(data, many=True)
+
+                return Response(serializer.data)
+    def post(self, request, format=None):
+            current_user = request.user
+            mutable_data = request.data.copy()
+            mutable_data['user'] = current_user.id 
+            
+            serializer = NotificationSerializer(data=mutable_data)
+
+            # Check if the data passed is valid
+            serializer.is_valid(raise_exception=True)
+            serializer.save()
+            # Return Response to User
+
+            response = Response()
+
+            response.data = {
+                'message': 'Notification saved Successfully',
+                'data': serializer.data
+            }
+            return response
+
+    def patch(self, request, pk=None, format=None):
+        # Get the todo to update
+        notification_to_update = Notification.objects.get(pk=pk)
+
+        serializer = NotificationSerializer(instance=notification_to_update, data=request.data, partial=True)
+
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+
+        response = Response()
+        response.data = {
+            'message': 'Notification updated Successfully',
+            'data': serializer.data
+        }
+
+        return response
+
+    def delete(self, request, pk, format=None):
+        notification_to_delete =  Notification.objects.get(pk=pk)
+
+            # delete the todo
+        notification_to_delete.delete()
+
+        return Response({
+            'message': 'Notification Deleted Successfully'
+        })
