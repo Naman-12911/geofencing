@@ -84,9 +84,5 @@ class UserLoginSerializer(serializers.ModelSerializer):
         else:
             raise AuthenticationFailed('Invalid authentication type')
     
-
-
-
-
 class PasswordResetSerializer(serializers.Serializer):
     email = serializers.EmailField()
