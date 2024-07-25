@@ -50,7 +50,7 @@ class ShiftBookingAPIview(APIView):
         # Get the todo to update
         shift_to_update = ShiftBooking.objects.get(pk=pk)
 
-        serializer = ShiftBooking(instance=shift_to_update, data=request.data, partial=True)
+        serializer = ShiftBookingSerializer(instance=shift_to_update, data=request.data, partial=True)
 
         serializer.is_valid(raise_exception=True)
         serializer.save()
