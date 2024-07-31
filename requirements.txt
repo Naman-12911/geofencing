@@ -18,3 +18,4 @@ python-dotenv
 fcm-django==2.1.0
 waitress==2.0.0
 whitenoise==5.2.0
+dj_database_url
