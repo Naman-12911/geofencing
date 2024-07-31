@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-dl6=47)1)&w6&2px$ldt7r!#5cshhmi@u+jcrokvcmsgnoxg_6
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-
+import dj_database_url
 ALLOWED_HOSTS = ['*']
 
 
@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'rest_framework',# instal  rest_framework
     'corsheaders',# for the react allow cors policy
     'shiftbooking',
+   
     
 ]
 
@@ -83,11 +84,18 @@ WSGI_APPLICATION = 'genfencing.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
+
+DATABASE_URL = "postgres://u4pjdr58fmhgb1:pf90bb00ed3c22d42096bd56add3bb537f057fcb0b18539487de954ca0d57fa2a@c9uss87s9bdb8n.cluster-czrs8kj4isg7.us-east-1.rds.amazonaws.com:5432/ddkpu8geqms66l"
+db_config = dj_database_url.config(default=DATABASE_URL)
+
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+    'default': db_config
 }
 
 
