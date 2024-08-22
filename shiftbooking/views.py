@@ -22,7 +22,7 @@ class ShiftBookingAPIview(APIView):
                 return Response(serializer.data)
 
             else:
-                data = ShiftBooking.objects.all()
+                data = ShiftBooking.objects.filter(shedule_confirm=False)
                 serializer = ShiftBookingSerializer(data, many=True)
 
                 return Response(serializer.data)
